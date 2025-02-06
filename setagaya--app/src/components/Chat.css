@@ -1,0 +1,195 @@
+/* 基本コンテナ */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #1e1e2e;
+    color: white;
+    font-family: "Arial", sans-serif;
+}
+
+/* タイトル */
+.chat-title {
+    text-align: center;
+    font-size: 24px;
+    padding: 15px;
+    background-color: #2a2a3a;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* メッセージエリア */
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* メッセージ */
+.message {
+    display: flex;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.message.assistant {
+    justify-content: flex-start;
+}
+
+/* 吹き出し */
+.message-bubble {
+    max-width: 60%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.4;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.message.user .message-bubble {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.message.assistant .message-bubble {
+    background-color: #33334d;
+    color: white;
+}
+
+/* 入力中アニメーション */
+.typing {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.typing-icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 入力欄 */
+.chat-input-container {
+    display: flex;
+    padding: 15px;
+    background-color: #2a2a3a;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.chat-input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3b3b4f;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.send-button {
+    margin-left: 10px;
+    padding: 12px;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: #3578e5;
+}
+
+.send-icon {
+    color: white;
+    width: 20px;
+    height: 20px;
+}
+
+.welcome-screen {
+    text-align: center;
+    margin-top: 30vh;
+}
+
+.start-button, .end-button {
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.start-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.end-button {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.start-button .icon, .end-button .icon {
+    margin-right: 8px;
+}
+
+.chatgpt-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #4a90e2 #2a2a3a;
+}
+
+/* スクロールバーのデザイン */
+.chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+.chat-messages::-webkit-scrollbar-thumb {
+    background-color: #4a90e2;
+    border-radius: 6px;
+}
+.chat-messages::-webkit-scrollbar-track {
+    background: #2a2a3a;
+}
+
+/* Lottie アニメーションを中央に配置 */
+.typing-animation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* フェードイン効果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
