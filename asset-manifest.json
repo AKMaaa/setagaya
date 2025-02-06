@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/AKMaaa/setagaya/static/css/main.b008a7e2.css",
+    "main.js": "/AKMaaa/setagaya/static/js/main.a80c48bb.js",
+    "static/js/488.83f30ca2.chunk.js": "/AKMaaa/setagaya/static/js/488.83f30ca2.chunk.js",
+    "static/media/profile.webp": "/AKMaaa/setagaya/static/media/profile.6cd4b92d0de058667a5a.webp",
+    "index.html": "/AKMaaa/setagaya/index.html",
+    "main.b008a7e2.css.map": "/AKMaaa/setagaya/static/css/main.b008a7e2.css.map",
+    "main.a80c48bb.js.map": "/AKMaaa/setagaya/static/js/main.a80c48bb.js.map",
+    "488.83f30ca2.chunk.js.map": "/AKMaaa/setagaya/static/js/488.83f30ca2.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b008a7e2.css",
+    "static/js/main.a80c48bb.js"
+  ]
+}
