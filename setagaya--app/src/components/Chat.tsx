@@ -9,6 +9,8 @@ import "./Chat.css";
 import profileIcon from "./profile.webp";
 import Lottie from "lottie-react";
 import loadingAnimation from "./loading_1.json";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 // ✅ `system` を含めた型定義
 type ChatMessage = { role: "user" | "assistant" | "system"; content: string };
@@ -104,7 +106,13 @@ const Chat: React.FC = () => {
                                 {msg.role === "assistant" && (
                                     <img src={profileIcon} alt="ChatGPT" className="chatgpt-icon" />
                                 )}
-                                <div className="message-bubble">{msg.content}</div>
+                                <div className="message-bubble">
+                                    {msg.role === "assistant" ? (
+                                        <ReactMarkdown>{msg.content}</ReactMarkdown>
+                                    ) : (
+                                        msg.content
+                                    )}
+                                </div>
                             </div>
                         ))}
                         {isTyping && (
