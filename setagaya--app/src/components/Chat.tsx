@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { getChatResponse } from "../api";
 import { db } from "../firebaseConfig";
 import { doc, updateDoc, setDoc } from "firebase/firestore";
@@ -13,6 +13,14 @@ import loadingAnimation from "./loading_1.json";
 import ReactMarkdown from "react-markdown";
 import { useNavigate } from "react-router-dom";
 
+// アクティビティのタイトルのマッピング
+const activityTitles: { [key: string]: string } = {
+    practice: "📝 生成AIの練習をしよう",
+    hallucination: "🌀 ハルシネーションを起こそう",
+    problemsolving: "💡 生成AIで問題解決をしてみよう",
+    sessions: "🤖 生成AIと議論をしてみよう",
+};
+
 type ChatMessage = { role: "user" | "assistant"; content: string; timestamp: string };
 
 const Chat: React.FC = () => {
@@ -21,6 +29,13 @@ const Chat: React.FC = () => {
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [isTyping, setIsTyping] = useState(false);
     const chatEndRef = useRef<HTMLDivElement>(null);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    // category を location.state から取得（なければ "sessions"）
+    const category = location.state?.category || "sessions";
+    // アクティビティのタイトルを取得
+    const activityTitle = activityTitles[category] || activityTitles["sessions"];
 
     useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -55,7 +70,6 @@ const Chat: React.FC = () => {
             };
 
             setMessages((prev) => [...prev, assistantMessage]);
-
             setIsTyping(false);
         } catch (error) {
             console.error("エラー:", error);
@@ -64,19 +78,17 @@ const Chat: React.FC = () => {
         }
     };
 
-    // ✅ メッセージが更新されるたびに Firestore に保存する
+    // メッセージが更新されるたびに Firestore に保存
     useEffect(() => {
         if (!groupId || messages.length === 0) return;
 
         const saveChatToFirestore = async () => {
             try {
-                const sessionRef = doc(db, "sessions", groupId);
-
+                const sessionRef = doc(db, category, groupId);
                 await setDoc(sessionRef, {
                     createdAt: getFormattedTimestamp(),
                     messages: messages,
                 }, { merge: true });
-
             } catch (error) {
                 console.error("Firestore 保存エラー:", error);
                 toast.error("チャット履歴の保存に失敗しました。");
@@ -84,21 +96,18 @@ const Chat: React.FC = () => {
         };
 
         saveChatToFirestore();
-    }, [messages, groupId]); // messages が更新されるたびに Firestore に保存
-
-    const navigate = useNavigate();
+    }, [messages, groupId, category]);
 
     const endChat = async () => {
         if (!groupId) return;
         try {
-            await updateDoc(doc(db, "sessions", groupId), {
+            await updateDoc(doc(db, category, groupId), {
                 endedAt: getFormattedTimestamp(),
             });
             toast.success("チャット履歴を保存しました！");
-            
             setTimeout(() => {
-                navigate("/"); // ✅ Firestore 保存後に `/` に遷移
-            }, 6000); // ✅ 1秒後にリダイレクト（トースト表示の時間を確保）
+                navigate("/");
+            }, 6000);
         } catch (error) {
             console.error("Firestore 保存エラー:", error);
             toast.error("チャット履歴の保存に失敗しました。");
@@ -111,7 +120,8 @@ const Chat: React.FC = () => {
 
     return (
         <div className="chat-container">
-            <h1 className="chat-title">Chat Assistant</h1>
+            {/* ヘッダー部分にアクティビティタイトルを表示 */}
+            <h1 className="chat-title">チャット画面<br />~ {activityTitle}~</h1>
             <button className="end-button" onClick={endChat}>
                 <XCircle className="icon" /> チャットを終了
             </button>
