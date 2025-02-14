@@ -205,3 +205,41 @@
         font-size: 10px;
     }
 }
+
+
+/* ドロップダウンを包むコンテナ */
+.collection-select-container {
+    margin-bottom: 15px;
+    width: 326px;
+}
+
+/* ドロップダウン本体 */
+.collection-dropdown {
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2a2a3a;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    appearance: none; /* デフォルトの矢印を消す */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='14' height='9' viewBox='0 0 14 9' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23fff' d='M1 1l6 6 6-6'/%3E%3C/svg%3E"); 
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    width: 100%;
+}
+
+/* ホバー・フォーカス時のエフェクト */
+.collection-dropdown:hover, .collection-dropdown:focus {
+    background-color: #3b3b4f;
+    transform: scale(1.02);
+}
+
+/* 選択肢（option）のスタイルはブラウザ依存が強いため、必要に応じて調整 */
+.collection-dropdown option {
+    background-color: #2a2a3a;
+    color: #ffffff;
+}
