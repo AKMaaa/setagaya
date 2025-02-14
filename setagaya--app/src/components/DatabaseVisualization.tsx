@@ -135,8 +135,8 @@ const DatabaseVisualization: React.FC = () => {
           value={activeCollection}
           onChange={(e) => setActiveCollection(e.target.value as "hallucination" | "practice" | "problemsolving")}
         >
-          <option value="hallucination">📝 生成AIの練習をしよう</option>
-          <option value="practice">🌀 ハルシネーションを起こそう</option>
+          <option value="hallucination">🌀 ハルシネーションを起こそう</option>
+          <option value="practice">📝 生成AIの練習をしよう</option>
           <option value="problemsolving">💡 生成AIで問題解決をしてみよう</option>
         </select>
       </div>
@@ -157,7 +157,7 @@ const DatabaseVisualization: React.FC = () => {
         <table className="database-table">
           <thead>
             <tr>
-              <th>ドキュメントID</th>
+              <th>グループ番号</th>
               <th>開始時刻</th>
               <th>終了時刻</th>
               <th>メッセージ数</th>
