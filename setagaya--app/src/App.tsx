@@ -1,12 +1,8 @@
 import React from "react";
-import Chat from "./components/Chat";
+import AppRoutes from "./routes";
 
 const App: React.FC = () => {
-  return (
-    <div className="h-screen flex items-center justify-center">
-      <Chat />
-    </div>
-  );
+  return <AppRoutes />;
 };
 
 export default App;

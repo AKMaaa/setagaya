@@ -1,0 +1,207 @@
+/* Firestore 可視化ページのコンテナ */
+.database-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #1e1e2e;
+    color: white;
+    font-family: "Arial", sans-serif;
+    text-align: center;
+}
+
+/* タイトル */
+.database-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    background-color: #2a2a3a;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ローディング表示 */
+.database-loading-text {
+    font-size: 18px;
+    color: #aaa;
+}
+
+/* メインのテーブル */
+.database-table {
+    width: 90%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    background-color: #2a2a3a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.database-table th, .database-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #444;
+}
+
+.database-table thead {
+    background-color: #4a90e2;
+    color: white;
+}
+
+.database-table tbody tr:hover {
+    background-color: #3b3b4f;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* 詳細ボタン */
+.database-expand-button {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #4a90e2;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.database-expand-button:hover {
+    background-color: #3578e5;
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.database-expand-button:active {
+    transform: scale(0.98);
+}
+
+/* データ更新ボタン */
+.database-refresh-button {
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #34c759;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.database-refresh-button:hover {
+    background-color: #2aa94d;
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.database-refresh-button:active {
+    transform: scale(0.98);
+}
+
+/* メッセージ一覧コンテナ */
+.database-message-container {
+    padding: 15px;
+    background-color: #3b3b4f;
+    border-radius: 8px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+/* ボタンのコンテナ */
+.database-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+/* CSVダウンロードボタン */
+.database-download-button {
+    padding: 12px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff9500;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.database-download-button:hover {
+    background-color: #e68a00;
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.database-download-button:active {
+    transform: scale(0.98);
+}
+
+
+/* メッセージ詳細テーブル */
+.database-message-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #444;
+    margin-top: 10px;
+}
+
+/* メッセージテーブルのヘッダー */
+.database-message-table th {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* ✅ メッセージ内容のセルだけ左寄せ */
+.database-message-content>p {
+    text-align: left;
+    word-break: break-word;
+    max-width: 500px;
+}
+
+.database-message-content>h3 {
+    text-align: left;
+    word-break: break-word;
+    max-width: 500px;
+}
+
+.database-message-content>ol {
+    text-align: left;
+    word-break: break-word;
+    max-width: 500px;
+}
+
+
+/* ✅ タイムスタンプのフォントサイズを小さくして圧縮 */
+.database-timestamp {
+    font-size: 12px;
+    color: #bbb;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* ✅ レスポンシブ対応 */
+@media (max-width: 768px) {
+    .database-message-content {
+        max-width: 300px;
+    }
+    .database-timestamp {
+        font-size: 10px;
+    }
+}
